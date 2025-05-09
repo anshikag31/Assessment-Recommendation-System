@@ -15,7 +15,7 @@ EXPERIENCE_PATTERN = r"(\d+)[-\s]?(to|–|–)?\s*(\d+)?\s*(years|yrs|year|yr)?\
 
 # Local model path
 local_model_path = r"C:\Users\KIIT\Documents\shl_cv_parser/bert-base-uncased"
-
+"""
 def load_or_download_bert_model(path):
     if os.path.exists(path) and os.path.isfile(os.path.join(path, "vocab.txt")):
         tokenizer = BertTokenizer.from_pretrained(path, local_files_only=True)
@@ -29,6 +29,7 @@ def load_or_download_bert_model(path):
     return tokenizer, model
 
 bert_tokenizer, bert_model = load_or_download_bert_model(local_model_path)
+"""
 
 tfidf_vectorizer = TfidfVectorizer(stop_words='english')
 
@@ -46,12 +47,13 @@ def clean_text(text):
 
 def extract_numbers(text):
     return re.findall(r'\d+', text)
-
+"""
 def get_bert_embedding(text):
     inputs = bert_tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=128)
     with torch.no_grad():
         outputs = bert_model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
+"""
 
 def extract_target_duration(prompt):
     match = re.search(r'(\d+)\s*(minutes?|mins?)', prompt.lower())
@@ -117,7 +119,38 @@ def score_item(query_words, query_numbers, prompt, item):
     score += len(shared) * 0.1
 
     return score
+def get_recommendations(prompt, catalog):
+    query = clean_text(prompt)
+    descriptions = []
 
+    # Preprocess catalog items
+    for item in catalog:
+        assessment_name = item.get("assessment_name", "").lower()
+        description = item.get("description", "").lower()
+        blob_fields = [
+            assessment_name,
+            description,
+            " ".join(item.get("test_type", [])),
+            item.get("remote_support", ""),
+            item.get("adaptive_support", ""),
+            str(item.get("duration", ""))
+        ]
+        blob = clean_text(" ".join(blob_fields))
+        descriptions.append(blob)
+
+    # Get top matches using TF-IDF similarity
+    top_indices, similarities = get_top_matches_tfidf(query, descriptions, top_k=10)
+    
+    # Collect top matching items from catalog
+    top_items = []
+    for idx, sim in zip(top_indices, similarities):
+        item = catalog[idx]
+        item['similarity'] = float(sim)  # Optional: include similarity score
+        top_items.append(item)
+
+    return top_items
+
+"""
 def get_recommendations(prompt, catalog):
     query = clean_text(prompt)
     query_words = set(query.split())
@@ -190,6 +223,7 @@ def get_recommendations(prompt, catalog):
 
     results.sort(reverse=True, key=lambda x: x[0])
     return [item for score, item in results[:10]]
+"""
 
 def get_top_matches_tfidf(query, descriptions, top_k=10):
     corpus = [query] + descriptions
