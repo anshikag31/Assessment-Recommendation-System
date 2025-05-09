@@ -19,7 +19,11 @@ app.add_middleware(
 )
 
 # Load catalog (ensure the file exists and has the expected content)
-assessments_path = r"C:\Users\KIIT\Documents\shl_cv_parser\assessments.json"
+assessments_path = os.path.join(os.path.dirname(__file__), "assessments.json")
+
+
+
+#assessments_path = r"C:\Users\KIIT\Documents\shl_cv_parser\assessments.json"
 
 if os.path.exists(assessments_path) and os.path.getsize(assessments_path) > 0:
     with open(assessments_path, "r", encoding="utf-8") as f:
