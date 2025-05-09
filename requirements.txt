@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+openai
+python-dotenv
+selenium
+beautifulsoup4
+requests
+webdriver-manager
+streamlit
+pandas
+torch
+
+
+
