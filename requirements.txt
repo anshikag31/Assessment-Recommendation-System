@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+transformers
+torch
+scikit-learn
+pandas
+numpy
+requests
+streamlit
+fuzzywuzzy
+selenium
+beautifulsoup4
+webdriver-manager
+python-dotenv
