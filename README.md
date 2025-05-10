@@ -63,6 +63,7 @@ Query: "Looking for a Java Developer with soft skills for a 40 min assessment"
 Top Matches:
 Core Java (Advanced Level) | SHL ✅
 Java 8 (New) | SHL ✅
+Core Java (Entry Level)  | SHL ✅
 Java frameworks (New)  | SHL ✅
 Java Design Patterns (New) | SHL ✅
 
