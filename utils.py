@@ -125,6 +125,14 @@ def score_item(query_words, query_numbers, prompt, item):
     score += len(shared) * 0.1
 
     return score
+
+def normalize_catalog(catalog):
+    for item in catalog:
+        for key in ['assessment_name', 'description']:
+            if key in item and isinstance(item[key], str):
+                item[key] = item[key].strip().lower()
+    return catalog
+    
 def get_recommendations(prompt, catalog):
     query = clean_text(prompt)
     descriptions = []
