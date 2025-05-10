@@ -5,6 +5,7 @@ import json
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 from utils import get_recommendations
+from fastapi import Query
 
 # Create the FastAPI app
 app = FastAPI()
@@ -37,11 +38,12 @@ class QueryInput(BaseModel):
 def health():
     return {"status": "ok"}
 
-@app.post("/recommend")
-def recommend(data: QueryInput):
-    query = data.query
+@app.get("/recommend")
+def recommend_get(query: str = Query(..., description="Query text")):
     matched = get_recommendations(query, CATALOG)
-    return {"recommended_assessments": matched or []}
+    if not matched:
+        return {"recommended_assessments": []}
+    return {"recommended_assessments": matched}
 
 # Required for Render deployment
 if __name__ == "__main__":
