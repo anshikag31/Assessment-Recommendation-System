@@ -1,10 +1,10 @@
-import os
+import os 
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 import json
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
-from utils import get_recommendations
+from utils import get_recommendations, normalize_catalog  # Add normalize_catalog import
 from fastapi import Query
 
 # Create the FastAPI app
@@ -28,6 +28,9 @@ if os.path.exists(assessments_path) and os.path.getsize(assessments_path) > 0:
 else:
     CATALOG = []
 
+# ✅ Normalize the catalog after loading
+CATALOG = normalize_catalog(CATALOG)
+
 print(f"Loaded {len(CATALOG)} assessments.")
 
 # Pydantic model
@@ -41,16 +44,24 @@ def health():
 
 @app.post("/recommend")
 def recommend_post(input_data: QueryInput):
+    # ✅ Debugging prints
+    print("Query:", input_data.query)
+    descriptions = [item["description"] for item in CATALOG if "description" in item]
+    print("Descriptions:", descriptions[:3])  # Show sample descriptions
+
     matched = get_recommendations(input_data.query, CATALOG)
     return {"recommended_assessments": matched or []}
 
 
 @app.get("/recommend")
 def recommend_get(query: str = Query(..., description="Query text")):
+    # ✅ Debugging prints
+    print("Query:", query)
+    descriptions = [item["description"] for item in CATALOG if "description" in item]
+    print("Descriptions:", descriptions[:3])  # Show sample descriptions
+
     matched = get_recommendations(query, CATALOG)
-    if not matched:
-        return {"recommended_assessments": []}
-    return {"recommended_assessments": matched}
+    return {"recommended_assessments": matched or []}
 
 # Required for Render deployment
 if __name__ == "__main__":
