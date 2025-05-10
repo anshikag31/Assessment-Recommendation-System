@@ -31,7 +31,13 @@ def load_or_download_bert_model(path):
 bert_tokenizer, bert_model = load_or_download_bert_model(local_model_path)
 """
 
-tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+#tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+tfidf_vectorizer = TfidfVectorizer(
+    stop_words='english',
+    lowercase=True,
+    token_pattern=r"(?u)\b\w\w+\b"  # default pattern, but now explicit
+)
+
 
 def preserve_phrases(text, phrase_list):
     text = text.lower()
