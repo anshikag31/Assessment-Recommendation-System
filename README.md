@@ -6,11 +6,15 @@ Approach : We adopted a hybrid scoring system combining TF-IDF-based semantic si
 
 Modules and Logic
 
-1.utils.py – Core NLP & Matching Logic
+1.utils.py 
+– Core NLP & Matching Logic
+
 Text Cleaning & Phrase Preservation
 Replaces multi-word phrases (e.g., "core java") with underscores to maintain semantic unity during tokenization.
+
 TF-IDF Similarity
 Utilized TfidfVectorizer to compute cosine similarity between the prompt and catalog assessment blobs to capture textual closeness.
+
 Heuristic Scoring (via score_item)
 Applied domain knowledge:
 +4 for strong technical skill match
@@ -21,33 +25,48 @@ Applied domain knowledge:
 +1 for matching experience pattern
 +1 to +1.5 for duration closeness (within 5–10 mins)
 Small bonus for shared words
+
 Custom Duration Parsing
 Extracts duration from query and handles flexible string inputs like "40 mins" or "1 hour".
 Embedded BERT model support for semantic embeddings (commented out for local resource constraints).
 
 2.Workflow
+
 Query Input: e.g., "Need a Java Developer with good communication skills, test duration ~40 mins".
+
 Text Normalization: Preserve key phrases, remove noise.
+
 TF-IDF Similarity: Find top 10 closest assessments.
+
 Heuristic Scoring: Re-rank using the custom score function based on multiple overlapping criteria.
+
 Output: Ranked list of recommended assessments.
 
 3.evaluate.py – Benchmark Testing
+
 Used predefined test cases mimicking real-world recruiter queries.
+
 Compared system's top N output against ground truth labels for recall-based evaluation.
+
 Included diverse job roles: Developer, Sales, Content Writer, QA Engineer, and Administrative Assistant.
 
 4.Dependencies
+
 scikit-learn, torch, transformers, fuzzywuzzy, re, json, requests
+
 Local support for BERT model loading (with fallback to HuggingFace Hub)
 
 5.Results (Sample Case)
+
 Query: "Looking for a Java Developer with soft skills for a 40 min assessment"
+
 Top Matches:
 Core Java (Advanced Level) | SHL ✅
 Automata - Fix (New) | SHL ✅
 Agile Software Development | SHL ✅
+
 Scoring matched the expected relevant assessments, verifying the accuracy and domain alignment.
+
 📊 Final Evaluation:
 Mean Recall@10: 0.2243
 MAP@10: 0.0985
