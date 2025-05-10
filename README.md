@@ -1,4 +1,4 @@
-###Intelligent SHL Assessment Recommendation System
+Intelligent SHL Assessment Recommendation System
 
 Objective : To build a smart recommendation engine that suggests relevant SHL assessments based on recruiter queries. The system understands context, role requirements, skills, soft skills, and duration constraints using NLP and traditional ML techniques.
 
@@ -62,8 +62,9 @@ Query: "Looking for a Java Developer with soft skills for a 40 min assessment"
 
 Top Matches:
 Core Java (Advanced Level) | SHL ✅
-Automata - Fix (New) | SHL ✅
-Agile Software Development | SHL ✅
+Java 8 (New) | SHL ✅
+Java frameworks (New)  | SHL ✅
+Java Design Patterns (New) | SHL ✅
 
 Scoring matched the expected relevant assessments, verifying the accuracy and domain alignment.
 
