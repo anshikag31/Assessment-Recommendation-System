@@ -1,25 +1,26 @@
+import os
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 import json
-import os
 from typing import List
-from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
-from utils import get_recommendations  # Ensure this is the correct path to your utility function
+from fastapi.middleware.cors import CORSMiddleware
+from utils import get_recommendations
+from fastapi import Query
 
 # Create the FastAPI app
 app = FastAPI()
 
-# Add CORS middleware to allow requests from any origin (you can restrict this if needed)
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can replace "*" with a list of specific origins for security
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all HTTP methods like GET, POST, etc.
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Load catalog (ensure the file exists and has the expected content)
-assessments_path = r"C:\Users\KIIT\Documents\shl_cv_parser\assessments.json"
+# Load catalog from assessments.json
+assessments_path = os.path.join(os.path.dirname(__file__), "assessments.json")
 
 if os.path.exists(assessments_path) and os.path.getsize(assessments_path) > 0:
     with open(assessments_path, "r", encoding="utf-8") as f:
@@ -29,7 +30,7 @@ else:
 
 print(f"Loaded {len(CATALOG)} assessments.")
 
-# Pydantic model for query input
+# Pydantic model
 class QueryInput(BaseModel):
     query: str
 
@@ -37,14 +38,21 @@ class QueryInput(BaseModel):
 def health():
     return {"status": "ok"}
 
+
 @app.post("/recommend")
-def recommend(data: QueryInput):
-    query = data.query
-    
-    # Get recommendations based on the query
+def recommend_post(input_data: QueryInput):
+    matched = get_recommendations(input_data.query, CATALOG)
+    return {"recommended_assessments": matched or []}
+
+
+@app.get("/recommend")
+def recommend_get(query: str = Query(..., description="Query text")):
     matched = get_recommendations(query, CATALOG)
-    
     if not matched:
-        return {"recommended_assessments": []}  # If no match found, return empty list
-    
-    return {"recommended_assessments": matched}  # Return matched assessments
+        return {"recommended_assessments": []}
+    return {"recommended_assessments": matched}
+
+# Required for Render deployment
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))

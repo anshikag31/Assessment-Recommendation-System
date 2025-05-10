@@ -18,7 +18,7 @@ if st.button("Get Recommendations"):
         # Call your API endpoint
         try:
             response = requests.post(
-                "http://127.0.0.1:8000/recommend",  # change this to your deployed API URL if needed
+                "https://assessment-recommendation-system-xcc9.onrender.com/recommend",  # change this to your deployed API URL if needed
                 json={"query": query}
             )
             if response.status_code == 200:
