@@ -38,6 +38,13 @@ class QueryInput(BaseModel):
 def health():
     return {"status": "ok"}
 
+
+@app.post("/recommend")
+def recommend_post(input_data: QueryInput):
+    matched = get_recommendations(input_data.query, CATALOG)
+    return {"recommended_assessments": matched or []}
+
+
 @app.get("/recommend")
 def recommend_get(query: str = Query(..., description="Query text")):
     matched = get_recommendations(query, CATALOG)
