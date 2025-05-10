@@ -52,34 +52,34 @@ Output: Ranked list of recommended assessments.
 
 4.Dependencies
 
-scikit-learn, torch, transformers, fuzzywuzzy, re, json, requests
+scikit-learn, torch, transformers, fuzzywuzzy, re, json, requests
 
-Local support for BERT model loading (with fallback to HuggingFace Hub)
+Local support for BERT model loading (with fallback to HuggingFace Hub)
 
 5.Results (Sample Case)
 
 Query: "Looking for a Java Developer with soft skills for a 40 min assessment"
 
 Top Matches:
-Core Java (Advanced Level) | SHL ✅
-Java 8 (New) | SHL ✅
-Core Java (Entry Level)  | SHL ✅
-Java frameworks (New)  | SHL ✅
-Java Design Patterns (New) | SHL ✅
+Core Java (Advanced Level) | SHL 
+Java 8 (New) | SHL 
+Core Java (Entry Level)  | SHL 
+Java frameworks (New)  | SHL 
+Java Design Patterns (New) | SHL 
 
 Scoring matched the expected relevant assessments, verifying the accuracy and domain alignment.
 
-📊 Final Evaluation:
+6. Final Evaluation:
 Mean Recall@10: 0.2243
 MAP@10: 0.0985
 
-✅ Key Features
-Handles natural language input with partial or vague descriptions
-Incorporates skill-role-soft skill heuristics
-Filters by duration and experience
-Designed to scale with any structured assessment catalog
+7. Key Features
+Handles natural language input with partial or vague descriptions
+Incorporates skill-role-soft skill heuristics
+Filters by duration and experience
+Designed to scale with any structured assessment catalog
 
 URL of the webapp that you built? Please make sure that it is functioning and reachable for us to try - https://assessment-recommendation-system-gtzdef2pbjzyjebofmy5nj.streamlit.app/
 
 Get API end point which can be queried using a query or piece of text and returns result in JSON? - https://assessment-recommendation-system-3p5c.onrender.com/recommend?query=I%20am%20hiring%20for%20Java%20developers%20who%20can%20also%20collaborate%20effectively%20with%20my%20business%20teams.%20Looking%20for%20an%20assessment(s)%20that%20can%20be%20co
-
+(enter the query in the link, after query = )
