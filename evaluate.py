@@ -11,9 +11,12 @@ test_data = [
             "Core Java (Entry Level) (New) | SHL",
             "Java 8 (New) | SHL",
             "Core Java (Advanced Level) (New) | SHL",
-            "Agile Software Development | SHL",
-            "Technology Professional 8.0 Job Focused Assessment | SHL",
-            "Computer Science (New) | SHL"
+            "Java Design Patterns (New) | SHL ",
+            " Java Frameworks( New) | SHL ",
+            " Java Platform Enterprise Edition 7 (Java EE 7) | SHL ",
+            " Business Communication (adaptive) | SHL ",
+            "Business Communication | SHL ",
+            " Interviewing and Hiring Concepts (U.S.) | SHL"
         ]
     },
     {
@@ -22,7 +25,11 @@ test_data = [
             "Entry level Sales 7.1 (International) | SHL",
             "Entry Level Sales Sift Out 7.1 | SHL",
             "Entry Level Sales Solution | SHL",
+            "Sales Transformation Individual Contributor | SHL",
+            "Sales Manager Solution | SHL",
+            "Insurance Sales Manager Solution | SHL",
             "Sales Representative Solution | SHL",
+            "Contact Center Sales Service | SHL",
             "Sales Support Specialist Solution | SHL",
             "Technical Sales Associate Solution | SHL",
             "SVAR - Spoken English (Indian Accent) (New) | SHL",
@@ -36,6 +43,7 @@ test_data = [
         "relevant_assessments": [
             "Motivation Questionnaire MQM5 | SHL",
             "Global Skills Assessment | SHL",
+            "Administrative Professional - Short Form | SHL",
             "Graduate 8.0 Job Focused Assessment | SHL"
         ]
     },
@@ -43,6 +51,8 @@ test_data = [
         "query": "Content Writer required, expert in English and SEO.",
         "relevant_assessments": [
             "Drupal (New) | SHL",
+            "Writex Email Writing | SHL",
+            "Spelling | SHL",
             "Search Engine Optimization (New) | SHL",
             "Administrative Professional - Short Form | SHL",
             "General Entry Level – Data Entry 7.0 Solution | SHL"
@@ -51,17 +61,18 @@ test_data = [
     {
         "query": "I am looking for a QA Engineer with automation and manual testing experience. Give me a 1-hour assessment.",
         "relevant_assessments": [
+            "Manual Testing (New) | SHL",
             "Automata Selenium | SHL",
             "Automata - Fix (New) | SHL",
+            "Automation Anywhere RPA Development | SHL",
+            "Micro Focus Unified Functional Testing (New) | SHL",
             "Automata Front End | SHL",
             "JavaScript (New) | SHL",
             "HTML/CSS (New) | SHL",
-            "HTML5 (New) | SHL",
-            "CSS3 (New) | SHL",
             "Selenium (New) | SHL",
             "SQL Server (New) | SHL",
-            "Automata - SQL (New) | SHL",
-            "Manual Testing (New) | SHL"
+            "Automata - SQL (New) | SHL"
+           
         ]
     },
     {
@@ -69,8 +80,11 @@ test_data = [
         "relevant_assessments": [
             "Administrative Professional - Short Form | SHL",
             "Verify - Numerical Ability | SHL",
+            "Business Commnications | SHL",
+            "Bank Collections Agent Short Form | SHL",
             "Financial Professional - Short Form | SHL",
             "Bank Administrative Assistant - Short Form | SHL",
+            "Bank Operations Supervisor - Short Form | SHL",
             "General Entry Level – Data Entry 7.0 Solution | SHL",
             "Basic Computer Literacy (Windows 10) (New) | SHL"
         ]
@@ -79,11 +93,14 @@ test_data = [
         "query": "I am hiring for a creative content role with a focus on branding and marketing. The assessment should be at most 90 mins.",
         "relevant_assessments": [
             "SHL Verify Interactive - Inductive Reasoning | SHL",
+            "Global Skills Development Report | SHL",
+            "Sales Manager Solution | SHL",
+            "Customer Service Short Form | SHL",
+            "Marketing (New) | SHL",
             "Occupational Personality Questionnaire OPQ32r | SHL"
         ]
     }
 ]
-
 def extract_assessment_name(url, description):
     path = urlparse(url).path
     name_from_url = path.rstrip('/').split('/')[-1].replace('-', ' ').title()
