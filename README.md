@@ -61,17 +61,17 @@ Local support for BERT model loading (with fallback to HuggingFace Hub)
 Query: "Looking for a Java Developer with soft skills for a 40 min assessment"
 
 Top Matches:
-Core Java (Advanced Level) | SHL 
-Java 8 (New) | SHL 
-Core Java (Entry Level)  | SHL 
-Java frameworks (New)  | SHL 
-Java Design Patterns (New) | SHL 
-
+"Automata - Fix (New) | SHL", 
+"Core Java (Entry Level) (New) | SHL", 
+"Java 8 (New) | SHL", 
+"Core Java (Advanced Level) (New) | SHL", 
+"Java Design Patterns (New) | SHL ", 
+" Java Frameworks( New) | SHL ", 
 Scoring matched the expected relevant assessments, verifying the accuracy and domain alignment.
 
 6. Final Evaluation:
-Mean Recall@10: 0.2243
-MAP@10: 0.0985
+Mean Recall@10: 0.5042
+MAP@10: 0.3926
 
 7. Key Features
 Handles natural language input with partial or vague descriptions
