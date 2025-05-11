@@ -34,21 +34,22 @@ if st.button("Get Recommendations"):
 
                 # Use description as the assessment name
                 df["Assessment Name"] = df.apply(
-                    lambda x: f"[{x.get('description', 'No Name')}]({x.get('url', '#')})", axis=1
-                )
+    lambda x: f'<a href="{x.get("url", "#")}" target="_blank">{x.get("description", "No Name").capitalize()}</a>', axis=1
+)
+
 
                 # Display selected columns
                 st.markdown("### 🔗 Top Recommendations")
-                st.write(
-                    df[["Assessment Name", "test_type", "duration", "remote_support", "adaptive_support"]]
-                    .rename(columns={
-                        "test_type": "Test Type",
-                        "duration": "Duration (mins)",
-                        "remote_support": "Remote Testing",
-                        "adaptive_support": "Adaptive/IRT"
-                    }),
-                    unsafe_allow_html=True
-                )
+                # Rename for display
+                display_df = df[["Assessment Name", "test_type", "duration", "remote_support", "adaptive_support"]].rename(columns={
+                      "test_type": "Test Type",
+                      "duration": "Duration (mins)",
+                      "remote_support": "Remote Testing",
+                      "adaptive_support": "Adaptive/IRT"
+                    })
+                # Render HTML manually for clickable links
+                st.write(display_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+
             else:
                 st.error(f"Error: {response.status_code} - {response.text}")
         except Exception as e:
