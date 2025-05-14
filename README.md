@@ -1,8 +1,10 @@
 # Intelligent SHL Assessment Recommendation System
 
-## Objective : To build a smart recommendation engine that suggests relevant SHL assessments based on recruiter queries. The system understands context, role requirements, skills, soft skills, and duration constraints using NLP and traditional ML techniques.
+## Objective : 
+To build a smart recommendation engine that suggests relevant SHL assessments based on recruiter queries. The system understands context, role requirements, skills, soft skills, and duration constraints using NLP and traditional ML techniques.
 
-## Approach : We adopted a hybrid scoring system combining TF-IDF-based semantic similarity with rule-based heuristics to match recruiter prompts with assessment descriptions. The goal was to mimic a domain expert's ability to parse vague queries and map them to structured assessment catalogs.
+## Approach : 
+We adopted a hybrid scoring system combining TF-IDF-based semantic similarity with rule-based heuristics to match recruiter prompts with assessment descriptions. The goal was to mimic a domain expert's ability to parse vague queries and map them to structured assessment catalogs.
 
 ## Modules and Logic
 
@@ -79,7 +81,9 @@ Incorporates skill-role-soft skill heuristics
 Filters by duration and experience
 Designed to scale with any structured assessment catalog
 
-## URL of the webapp that you built? Please make sure that it is functioning and reachable for us to try - https://assessment-recommendation-system-gtzdef2pbjzyjebofmy5nj.streamlit.app/
+## URL of the webapp that you built? Please make sure that it is functioning and reachable for us to try - 
+https://assessment-recommendation-system-gtzdef2pbjzyjebofmy5nj.streamlit.app/
 
-## Get API end point which can be queried using a query or piece of text and returns result in JSON? - https://assessment-recommendation-system-3p5c.onrender.com/recommend?query=I%20am%20hiring%20for%20Java%20developers%20who%20can%20also%20collaborate%20effectively%20with%20my%20business%20teams.%20Looking%20for%20an%20assessment(s)%20that%20can%20be%20co
+## Get API end point which can be queried using a query or piece of text and returns result in JSON? - 
+https://assessment-recommendation-system-3p5c.onrender.com/recommend?query=I%20am%20hiring%20for%20Java%20developers%20who%20can%20also%20collaborate%20effectively%20with%20my%20business%20teams.%20Looking%20for%20an%20assessment(s)%20that%20can%20be%20co
 (enter the query in the link, after query = )
